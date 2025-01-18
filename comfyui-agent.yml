@@ -1,0 +1,105 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: agent-chat
+  name: comfyui-agent
+  use_icon_as_answer_icon: false
+kind: app
+model_config:
+  agent_mode:
+    enabled: true
+    max_iteration: 5
+    prompt: null
+    strategy: function_call
+    tools:
+    - enabled: true
+      isDeleted: false
+      notAuthor: false
+      provider_id: 4c4d4b60-a99d-4d85-9e71-c807ba0131e8
+      provider_name: comfyui-test
+      provider_type: workflow
+      tool_label: comfyui-test
+      tool_name: general_images
+      tool_parameters: {}
+  annotation_reply:
+    enabled: false
+  chat_prompt_config: {}
+  completion_prompt_config: {}
+  dataset_configs:
+    datasets:
+      datasets: []
+    reranking_enable: true
+    retrieval_model: multiple
+    top_k: 4
+  dataset_query_variable: ''
+  external_data_tools: []
+  file_upload:
+    allowed_file_extensions:
+    - .JPG
+    - .JPEG
+    - .PNG
+    - .GIF
+    - .WEBP
+    - .SVG
+    - .MP4
+    - .MOV
+    - .MPEG
+    - .MPGA
+    allowed_file_types: []
+    allowed_file_upload_methods:
+    - remote_url
+    - local_file
+    enabled: false
+    image:
+      detail: high
+      enabled: false
+      number_limits: 3
+      transfer_methods:
+      - remote_url
+      - local_file
+    number_limits: 3
+  model:
+    completion_params:
+      stop: []
+      temperature: 0
+    mode: chat
+    name: gpt-4o
+    provider: azure_openai
+  more_like_this:
+    enabled: false
+  opening_statement: ''
+  pre_prompt: '你是comfyui生成图片机器人
+
+    你的任务是调用comfyui-test工具生成图片并显示，你生成的图片提示词必须是Stable Diffusion的英文提示词
+
+    comfyui-test工具的number传{{number}}
+
+
+    '
+  prompt_type: simple
+  retriever_resource:
+    enabled: true
+  sensitive_word_avoidance:
+    configs: []
+    enabled: false
+    type: ''
+  speech_to_text:
+    enabled: false
+  suggested_questions: []
+  suggested_questions_after_answer:
+    enabled: false
+  text_to_speech:
+    enabled: false
+    language: ''
+    voice: ''
+  user_input_form:
+  - select:
+      default: ''
+      label: 生成图片数量
+      options:
+      - '1'
+      - '2'
+      required: true
+      variable: number
+version: 0.1.4

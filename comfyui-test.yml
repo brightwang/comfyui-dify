@@ -1,0 +1,273 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: comfyui-test
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.4
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: http-request
+      id: 1736598128218-source-1736598142615-target
+      source: '1736598128218'
+      sourceHandle: source
+      target: '1736598142615'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: code
+      id: 1736598142615-source-1736599989238-target
+      source: '1736598142615'
+      sourceHandle: source
+      target: '1736599989238'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: end
+      id: 1736599989238-source-1736598145776-target
+      source: '1736599989238'
+      sourceHandle: source
+      target: '1736598145776'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: true
+        title: 开始
+        type: start
+        variables:
+        - label: prompt
+          max_length: 300
+          options: []
+          required: true
+          type: paragraph
+          variable: prompt
+        - label: number
+          max_length: 48
+          options: []
+          required: true
+          type: number
+          variable: number
+      height: 115
+      id: '1736598128218'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - id: key-value-2
+            key: ''
+            type: text
+            value: "{\n     \"prompt\": {\n          \"3\": {\n               \"inputs\"\
+              : {\n                    \"seed\": 786392357676404,\n              \
+              \      \"steps\": 20,\n                    \"cfg\": 8,\n           \
+              \         \"sampler_name\": \"euler\",\n                    \"scheduler\"\
+              : \"normal\",\n                    \"denoise\": 1,\n               \
+              \     \"model\": [\n                         \"4\",\n              \
+              \           0\n                    ],\n                    \"positive\"\
+              : [\n                         \"6\",\n                         0\n \
+              \                   ],\n                    \"negative\": [\n      \
+              \                   \"7\",\n                         0\n           \
+              \         ],\n                    \"latent_image\": [\n            \
+              \             \"5\",\n                         0\n                 \
+              \   ]\n               },\n               \"class_type\": \"KSampler\"\
+              ,\n               \"_meta\": {\n                    \"title\": \"K采样器\"\
+              \n               }\n          },\n          \"4\": {\n             \
+              \  \"inputs\": {\n                    \"ckpt_name\": \"iniverseMixSFWNSFW_ponyRealGuofengV50C.safetensors\"\
+              \n               },\n               \"class_type\": \"CheckpointLoaderSimple\"\
+              ,\n               \"_meta\": {\n                    \"title\": \"加载检查点\"\
+              \n               }\n          },\n          \"5\": {\n             \
+              \  \"inputs\": {\n                    \"width\": 512,\n            \
+              \        \"height\": 512,\n                    \"batch_size\": {{#1736598128218.number#}}\n\
+              \               },\n               \"class_type\": \"EmptyLatentImage\"\
+              ,\n               \"_meta\": {\n                    \"title\": \"空潜空间图像\"\
+              \n               }\n          },\n          \"6\": {\n             \
+              \  \"inputs\": {\n                    \"text\": \"{{#1736598128218.prompt#}},\"\
+              ,\n                    \"clip\": [\n                         \"4\",\n\
+              \                         1\n                    ]\n               },\n\
+              \               \"class_type\": \"CLIPTextEncode\",\n              \
+              \ \"_meta\": {\n                    \"title\": \"CLIP文本编码（提示）\"\n  \
+              \             }\n          },\n          \"7\": {\n               \"\
+              inputs\": {\n                    \"text\": \"{{#1736598128218.prompt#}}\"\
+              ,\n                    \"clip\": [\n                         \"4\",\n\
+              \                         1\n                    ]\n               },\n\
+              \               \"class_type\": \"CLIPTextEncode\",\n              \
+              \ \"_meta\": {\n                    \"title\": \"CLIP文本编码（提示）\"\n  \
+              \             }\n          },\n          \"8\": {\n               \"\
+              inputs\": {\n                    \"samples\": [\n                  \
+              \       \"3\",\n                         0\n                    ],\n\
+              \                    \"vae\": [\n                         \"4\",\n \
+              \                        2\n                    ]\n               },\n\
+              \               \"class_type\": \"VAEDecode\",\n               \"_meta\"\
+              : {\n                    \"title\": \"VAE解码\"\n               }\n  \
+              \        },\n          \"9\": {\n               \"inputs\": {\n    \
+              \                \"filename_prefix\": \"ComfyUI\",\n               \
+              \     \"images\": [\n                         \"8\",\n             \
+              \            0\n                    ]\n               },\n         \
+              \      \"class_type\": \"SaveImage\",\n               \"_meta\": {\n\
+              \                    \"title\": \"保存图像\"\n               }\n       \
+              \   }\n     }\n}"
+          type: json
+        desc: ''
+        headers: Content-Type:application/json
+        method: post
+        params: ''
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 请求
+        type: http-request
+        url: http://192.168.100.142:8188/prompt
+        variables: []
+      height: 109
+      id: '1736598142615'
+      position:
+        x: 410
+        y: 249
+      positionAbsolute:
+        x: 410
+        y: 249
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1736599989238'
+          - result
+          variable: body
+        selected: false
+        title: 结束
+        type: end
+      height: 89
+      id: '1736598145776'
+      position:
+        x: 1242
+        y: 88
+      positionAbsolute:
+        x: 1242
+        y: 88
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\nimport json\nimport requests\nimport time\ndef main(body: str) ->\
+          \ dict:\n    data= json.loads(body)\n    prompt_id=data[\"prompt_id\"]\n\
+          \    number=data[\"number\"]\n    images=[]\n    image_urls=[]\n    while\
+          \ True:\n        time.sleep(3)\n        data = requests.get(\"http://192.168.100.142:8188/history/\"\
+          +prompt_id).json()\n        if prompt_id in data:\n            status=data[prompt_id][\"\
+          status\"]\n            if status[\"completed\"] and status[\"status_str\"\
+          ]==\"success\":\n                images=data[prompt_id][\"outputs\"][\"\
+          9\"][\"images\"]\n                break\n        else:\n            continue\n\
+          \    for img in images:\n        image_urls.append(\n            \"http://192.168.100.142:8188/view?filename=\"\
+          +img[\"filename\"]+\"&subfolder=\"+img[\"subfolder\"]+\"&type=output\"\n\
+          \        )\n    return {\n        \"result\": image_urls ,\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: array[string]
+        selected: false
+        title: 代码执行 2
+        type: code
+        variables:
+        - value_selector:
+          - '1736598142615'
+          - body
+          variable: body
+      height: 53
+      id: '1736599989238'
+      position:
+        x: 765
+        y: 131
+      positionAbsolute:
+        x: 765
+        y: 131
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 85.73326913811422
+      y: 141.58277235107454
+      zoom: 0.727441974815895
